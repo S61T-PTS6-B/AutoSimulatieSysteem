@@ -89,6 +89,8 @@ function decode(obj) {
             new google.maps.LatLng(obj.points[obj.count][0], obj.points[obj.count][1]),
             new google.maps.LatLng(obj.points[obj.count + 1][0], obj.points[obj.count + 1][1]),
         ];
+        var firstCoord = coord[0];
+        var lastCoord = coord[1];
         var path = new google.maps.Polyline({
             path: coord,
             strokeColor: obj.color,
@@ -194,12 +196,4 @@ function newCar(name, color, origin, destination)
 {
     addGPSClient(name, color, origin, destination);
     self.setInterval("startRender()", 1000);
-}
-
-function dummyStart()
-{
-    newCar('Max Breuer', '#FF0000', 'boxtel, zandvliet 71', 'tilburg, enschotsestraat 66-35');
-    newCar('Sander van den Hout', '#0000cc', 'tilburg, enschotsestraat 66-35', 'boxtel, zandvliet 71');
-    newCar('Car 3', '#00ff00', 'boxtel, zandvliet 71', 'eindhoven');
-    newCar('Gijs Hendrickx', '#ff9900', 'tilburg, primus van gilsstraat 30', 'gilze-rijen, rembrandtlaan 33');    
 }

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>GPS Simulator</title>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+        <style type="text/css">
+            html { height: 100% }
+            body { height: 99%; margin: 0; padding: 0 }
+            #map_canvas { height: 100% }
+        </style>
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+        <script type="text/javascript" src="resources/js/movement.js"></script>
+    </head>
+    <body onload="javascript:initialize();javascript:dummyStart();">
+        <script type="text/javascript">
+            function dummyStart()
+            {
+                newCar('Max Breuer', '#FF0000', 'boxtel, zandvliet 71', 'tilburg, enschotsestraat 66-35');
+                #{ControllerBean.addCar('Max Breuer', '#FF0000', 'boxtel, zandvliet 71', 'tilburg, enschotsestraat 66-35')}
+
+                newCar('Sander van den Hout', '#0000cc', 'tilburg, enschotsestraat 66-35', 'boxtel, zandvliet 71');
+                #{ControllerBean.addCar('Sander van den Hout', '#0000cc', 'tilburg, enschotsestraat 66-35', 'boxtel, zandvliet 71')}
+
+                newCar('Car 3', '#00ff00', 'boxtel, zandvliet 71', 'eindhoven');
+                #{ControllerBean.addCar('Car 3', '#00ff00', 'boxtel, zandvliet 71', 'eindhoven')}
+
+                newCar('Gijs Hendrickx', '#ff9900', 'tilburg, primus van gilsstraat 30', 'gilze-rijen, rembrandtlaan 33');
+                #{ControllerBean.addCar('Gijs Hendrickx', '#ff9900', 'tilburg, primus van gilsstraat 30', 'gilze-rijen, rembrandtlaan 33')}
+            }
+        </script>
+        <div id="map_canvas"></div>
+    </body>
+</html>
