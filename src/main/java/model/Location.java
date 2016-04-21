@@ -5,10 +5,23 @@
  */
 package model;
 
+import java.io.Serializable;
+import java.util.Date;
+
 /**
  *
  * @author Max
  */
-public class Location {
+public class Location implements Serializable {
+
+    String longitude;
+    String latitude;
+    Date date;
+    
+    public Location(String longitude, String latitude) {
+        this.date = new Date();
+        this.longitude = longitude;
+        this.latitude = latitude;
+    }
     
 }

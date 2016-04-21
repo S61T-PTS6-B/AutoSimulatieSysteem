@@ -18,11 +18,35 @@ import service.IService;
 @ManagedBean(name = "ControllerBean")
 @SessionScoped
 public class ControllerBean implements Serializable {
-    
+
     @EJB
     private IService service;
     
+    String carName;
+    String location;
+    
     public void addCar(String name, String color, String origin, String destination) {
         service.addCar(name, color, origin, destination);
+    }
+    
+    public void addLocation() {
+        service.addLocation(carName, location);
+    }
+    
+    public void setCarName(String carName) {
+        this.carName = carName;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+
+    }
+
+    public String getCarName() {
+        return carName;
+    }
+
+    public String getLocation() {
+        return location;
     }
 }

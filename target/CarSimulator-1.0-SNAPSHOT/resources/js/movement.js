@@ -89,8 +89,9 @@ function decode(obj) {
             new google.maps.LatLng(obj.points[obj.count][0], obj.points[obj.count][1]),
             new google.maps.LatLng(obj.points[obj.count + 1][0], obj.points[obj.count + 1][1]),
         ];
-        var firstCoord = coord[0];
-        var lastCoord = coord[1];
+        var location = coord[1].toString();
+        addLocation(obj.name, location);
+        
         var path = new google.maps.Polyline({
             path: coord,
             strokeColor: obj.color,

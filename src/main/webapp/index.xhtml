@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
     <head>
         <title>GPS Simulator</title>
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
         <style type="text/css">
             html { height: 100% }
-            body { height: 99%; margin: 0; padding: 0 }
-            #map_canvas { height: 100% }
+            body { height: 100%; margin: 0; padding: 0 }
+            #map_canvas { height: 99% }
         </style>
-        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBW9i_Q1leCyE0z1GFtrWhMvj1B0DAkbA"></script>
         <script type="text/javascript" src="resources/js/movement.js"></script>
     </head>
     <body onload="javascript:initialize();javascript:dummyStart();">
@@ -16,18 +17,45 @@
             function dummyStart()
             {
                 newCar('Max Breuer', '#FF0000', 'boxtel, zandvliet 71', 'tilburg, enschotsestraat 66-35');
-                #{ControllerBean.addCar('Max Breuer', '#FF0000', 'boxtel, zandvliet 71', 'tilburg, enschotsestraat 66-35')}
+            #{ControllerBean.addCar('Max Breuer', '#FF0000', 'boxtel, zandvliet 71', 'tilburg, enschotsestraat 66-35')}
 
                 newCar('Sander van den Hout', '#0000cc', 'tilburg, enschotsestraat 66-35', 'boxtel, zandvliet 71');
-                #{ControllerBean.addCar('Sander van den Hout', '#0000cc', 'tilburg, enschotsestraat 66-35', 'boxtel, zandvliet 71')}
+            #{ControllerBean.addCar('Sander van den Hout', '#0000cc', 'tilburg, enschotsestraat 66-35', 'boxtel, zandvliet 71')}
 
-                newCar('Car 3', '#00ff00', 'boxtel, zandvliet 71', 'eindhoven');
-                #{ControllerBean.addCar('Car 3', '#00ff00', 'boxtel, zandvliet 71', 'eindhoven')}
+                newCar('Koen van der Borght', '#00ff00', 'boxtel, zandvliet 71', 'eindhoven');
+            #{ControllerBean.addCar('Koen van der Borght', '#00ff00', 'boxtel, zandvliet 71', 'eindhoven')}
 
                 newCar('Gijs Hendrickx', '#ff9900', 'tilburg, primus van gilsstraat 30', 'gilze-rijen, rembrandtlaan 33');
-                #{ControllerBean.addCar('Gijs Hendrickx', '#ff9900', 'tilburg, primus van gilsstraat 30', 'gilze-rijen, rembrandtlaan 33')}
+            #{ControllerBean.addCar('Gijs Hendrickx', '#ff9900', 'tilburg, primus van gilsstraat 30', 'gilze-rijen, rembrandtlaan 33')}
+
+                newCar('Cas van Gool', '#ff00ff', 'oisterwijk', 'eindhoven');
+            #{ControllerBean.addCar('Cas van Gool', '#ff00ff', 'oisterwijk', 'eindhoven')}
+                
+//                newCar('Car 4', '#000', 'boxtel, zandvliet 71', 'kerkendijk 150 someren');
+//            {ControllerBean.addCar('Car 4', '#000', 'boxtel, zandvliet 71', 'kerkendijk 150 someren')}
+//
+//                newCar('Car 5', '#00ff11', 'den bosch', 'boxtel');
+//            {ControllerBean.addCar('Car 5', '#00ff11', 'den bosch', 'boxtel')}
+//
+//                newCar('Car 6', '#00ff44', 'den bosch', 'eindhoven');
+//            {ControllerBean.addCar('Car 6', '#00ff44', 'den bosch', 'eindhoven')}
+//
+//                newCar('Car 7', '#00ff77', 'boxtel', 'den bosch');
+//            {ControllerBean.addCar('Car 7', '#00ff77', 'boxtel', 'den bosch')}
+            }
+
+            function addLocation(carName, location) {
+                document.getElementById('hiddenForm:hiddenCarName').value = carName;
+                document.getElementById('hiddenForm:hiddenLocation').value = location;
+
+                jsf.ajax.request('hiddenForm:link', null, {'javax.faces.behavior.event': 'action', 'execute': '@form', 'render': 'div-to-render'});
             }
         </script>
+        <h:form id="hiddenForm">
+            <h:inputHidden id="hiddenCarName" value="#{ControllerBean.carName}"/>
+            <h:inputHidden id="hiddenLocation" value="#{ControllerBean.location}"/>
+            <h:commandLink id="link" action="#{ControllerBean.addLocation()}" />
+        </h:form>
         <div id="map_canvas"></div>
     </body>
 </html>
