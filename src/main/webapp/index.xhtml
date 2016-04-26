@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <head>
         <title>GPS Simulator</title>
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
         <style type="text/css">
             html { height: 100% }
             body { height: 100%; margin: 0; padding: 0 }
-            #map_canvas { height: 99% }
+            #map_canvas { height: 90% }
         </style>
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBW9i_Q1leCyE0z1GFtrWhMvj1B0DAkbA"></script>
         <script type="text/javascript" src="resources/js/movement.js"></script>
@@ -30,7 +32,7 @@
 
                 newCar('Cas van Gool', '#ff00ff', 'oisterwijk', 'eindhoven');
             #{ControllerBean.addCar('Cas van Gool', '#ff00ff', 'oisterwijk', 'eindhoven')}
-                
+
 //                newCar('Car 4', '#000', 'boxtel, zandvliet 71', 'kerkendijk 150 someren');
 //            {ControllerBean.addCar('Car 4', '#000', 'boxtel, zandvliet 71', 'kerkendijk 150 someren')}
 //
@@ -48,7 +50,7 @@
                 document.getElementById('hiddenForm:hiddenCarName').value = carName;
                 document.getElementById('hiddenForm:hiddenLocation').value = location;
 
-                jsf.ajax.request('hiddenForm:link', null, {'javax.faces.behavior.event': 'action', 'execute': '@form', 'render': 'div-to-render'});
+                jsf.ajax.request('hiddenForm:link', null, {'javax.faces.behavior.event': 'action', 'execute': '@form', 'render': 'output'});
             }
         </script>
         <h:form id="hiddenForm">
@@ -57,5 +59,13 @@
             <h:commandLink id="link" action="#{ControllerBean.addLocation()}" />
         </h:form>
         <div id="map_canvas"></div>
+        <h:panelGroup id="output">
+            <h:dataTable var="loc" value="#{ControllerBean.locations}">
+                    <h:column>
+                        <f:facet name="header">Car Name: Longitude, Latitude</f:facet>
+                        #{loc}
+                    </h:column>
+            </h:dataTable>
+        </h:panelGroup>
     </body>
 </html>

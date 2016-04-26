@@ -41,8 +41,7 @@ public class Service implements IService {
     }
 
     @Override
-    public void addLocation(String carName, String location) {
-
+    public String addLocation(String carName, String location) {
         for (Car c : cars) {
             if (c.getName().equals(carName)) {
                 location = location.replace("(", "").replace(")", "");
@@ -51,6 +50,7 @@ public class Service implements IService {
                 c.addLocation(theLocation);
             }
         }
+        return carName + ": " + location;
         //System.out.print(carName + ": " + location);
     }
 }

@@ -51,7 +51,7 @@ public class Car extends TimerTask {
                 locationsToSend = new ArrayList<>(locations.subList(0, 200));
             }
             else {
-            locationsToSend = new ArrayList<>(locations.subList(0, locations.size()));                
+                locationsToSend = new ArrayList<>(locations.subList(0, locations.size()));                
             }
             boolean succes = sender.sendPackage(locationsToSend, this.name);
             if (succes) {

@@ -13,5 +13,5 @@ public interface IService {
     
     public void addCar(String name, String color, String origin, String destination);
     
-    public void addLocation(String carName, String location);
+    public String addLocation(String carName, String location);
 }

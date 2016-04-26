@@ -6,9 +6,12 @@
 package controller;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import model.Location;
 import service.IService;
 
 /**
@@ -24,13 +27,18 @@ public class ControllerBean implements Serializable {
     
     String carName;
     String location;
+    List<String> locations = new ArrayList<>();
+
+    public List<String> getLocations() {
+        return locations;
+    }
     
     public void addCar(String name, String color, String origin, String destination) {
         service.addCar(name, color, origin, destination);
     }
     
     public void addLocation() {
-        service.addLocation(carName, location);
+        locations.add(service.addLocation(carName, location));
     }
     
     public void setCarName(String carName) {
