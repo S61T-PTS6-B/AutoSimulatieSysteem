@@ -27,9 +27,9 @@ public class ControllerBean implements Serializable {
     
     String carName;
     String location;
-    List<String> locations = new ArrayList<>();
+    List<String[]> locations = new ArrayList<>();
 
-    public List<String> getLocations() {
+    public List<String[]> getLocations() {
         return locations;
     }
     
@@ -38,7 +38,11 @@ public class ControllerBean implements Serializable {
     }
     
     public void addLocation() {
-        locations.add(service.addLocation(carName, location));
+        String loc = service.addLocation(carName, location);
+        loc = loc.replace(",", "),(");
+        loc = loc.replace(":", ",");
+        locations.add(loc.split(","));
+        
     }
     
     public void setCarName(String carName) {

@@ -62,8 +62,16 @@
         <h:panelGroup id="output">
             <h:dataTable var="loc" value="#{ControllerBean.locations}">
                     <h:column>
-                        <f:facet name="header">Car Name: Longitude, Latitude</f:facet>
-                        #{loc}
+                        <f:facet name="header">Car Name</f:facet>
+                        #{loc[0]}
+                    </h:column>
+                <h:column>
+                        <f:facet name="header">Longitude</f:facet>
+                        #{loc[1]}
+                    </h:column>
+                <h:column>
+                        <f:facet name="header">Latitude</f:facet>
+                        #{loc[2]}
                     </h:column>
             </h:dataTable>
         </h:panelGroup>
