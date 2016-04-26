@@ -5,6 +5,15 @@
  */
 package service;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -24,7 +33,7 @@ import model.Location;
 public class Service implements IService {
 
     List<Car> cars = new ArrayList<>();
-    
+
     @Override
     public void addCar(String name, String color, String origin, String destination) {
         Car newCar;
@@ -50,7 +59,15 @@ public class Service implements IService {
                 c.addLocation(theLocation);
             }
         }
+        try {
+            File file = new File("C:/temp/carSimulatorLoggingString.txt");
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            Files.write(Paths.get("C:/temp/carSimulatorLoggingString.txt"), (carName + ": " + location + "\r\n").getBytes(), StandardOpenOption.APPEND);
+        } catch (IOException e) {
+            //exception handling left as an exercise for the reader
+        }
         return carName + ": " + location;
-        //System.out.print(carName + ": " + location);
     }
 }
