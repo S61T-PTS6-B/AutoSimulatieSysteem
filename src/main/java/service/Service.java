@@ -15,6 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Timer;
 import java.util.logging.Level;
@@ -51,6 +52,15 @@ public class Service implements IService {
 
     @Override
     public String addLocation(String carName, String location) {
+        try {
+            File file = new File("C:/temp/carSimulatorLoggingString.txt");
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            Files.write(Paths.get("C:/temp/carSimulatorLoggingString.txt"), (carName + ": " + location + ", " + new Date() + "\r\n").getBytes(), StandardOpenOption.APPEND);
+        } catch (IOException e) {
+            //exception handling left as an exercise for the reader
+        }
         for (Car c : cars) {
             if (c.getName().equals(carName)) {
                 location = location.replace("(", "").replace(")", "");
@@ -58,15 +68,6 @@ public class Service implements IService {
                 Location theLocation = new Location(locationSplit[0], locationSplit[1]);
                 c.addLocation(theLocation);
             }
-        }
-        try {
-            File file = new File("C:/temp/carSimulatorLoggingString.txt");
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-            Files.write(Paths.get("C:/temp/carSimulatorLoggingString.txt"), (carName + ": " + location + "\r\n").getBytes(), StandardOpenOption.APPEND);
-        } catch (IOException e) {
-            //exception handling left as an exercise for the reader
         }
         return carName + ": " + location;
     }
