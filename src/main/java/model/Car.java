@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.jms.JMSException;
 import javax.naming.NamingException;
 import javax.swing.Timer;
@@ -53,7 +55,12 @@ public class Car extends TimerTask {
             else {
                 locationsToSend = new ArrayList<>(locations.subList(0, locations.size()));                
             }
-            boolean succes = sender.sendPackage(locationsToSend, this.name);
+            boolean succes = false;
+            try {
+                succes = sender.sendPackage(locationsToSend, this.name);
+            } catch (JMSException ex) {
+                Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
+            }
             if (succes) {
                 //If the list contained less than 200 items, the entire list was sent in the package, so we can start with an empty list again.
                 if (locations.size() <= 200) {

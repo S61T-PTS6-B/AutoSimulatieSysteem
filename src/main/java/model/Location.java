@@ -14,6 +14,18 @@ import java.util.Date;
  */
 public class Location implements Serializable {
 
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
     String longitude;
     String latitude;
     Date date;

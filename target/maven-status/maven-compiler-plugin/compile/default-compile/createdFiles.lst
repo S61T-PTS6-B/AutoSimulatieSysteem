@@ -1,0 +1,6 @@
+controller\ControllerBean.class
+service\IService.class
+model\Car.class
+service\Service.class
+sender\Sender.class
+model\Location.class
