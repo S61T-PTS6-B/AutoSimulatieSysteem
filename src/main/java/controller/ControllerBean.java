@@ -39,7 +39,7 @@ public class ControllerBean implements Serializable {
     
     public void addLocation() {
         String loc = service.addLocation(carName, location);
-        loc = loc.replace(",", "|,");
+        loc = loc.replace(",", "  |,");
         loc = loc.replace(":", ",");
         locations.add(loc.split(","));
         
