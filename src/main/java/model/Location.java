@@ -26,14 +26,14 @@ public class Location implements Serializable {
         return date;
     }
 
-    String longitude;
     String latitude;
+    String longitude;
     Date date;
     
-    public Location(String longitude, String latitude) {
+    public Location(String latitude, String longitude) {
         this.date = new Date();
-        this.longitude = longitude;
         this.latitude = latitude;
+        this.longitude = longitude;
     }
     
 }

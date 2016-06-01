@@ -34,7 +34,7 @@ public class Sender {
     public boolean sendPackage(ArrayList<Location> locations, String carName) throws JMSException {
 
         ConnectionFactory connFactory = new ConnectionFactory();
-        connFactory.setProperty(ConnectionConfiguration.imqAddressList, "145.93.81.93:7676");
+        connFactory.setProperty(ConnectionConfiguration.imqAddressList, "145.93.81.135:7676");
 
         Queue myQueue = new Queue("queuevp");
 
@@ -52,7 +52,7 @@ public class Sender {
                 jloc.put("lat", loc.getLatitude());
                 jloc.put("long", loc.getLongitude());
                 DateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss");
-                String date = sdf.format(new Date());
+                String date = sdf.format(loc.getDate());
                 jloc.put("date", date);
                 jsArray.put(jloc);
             }
