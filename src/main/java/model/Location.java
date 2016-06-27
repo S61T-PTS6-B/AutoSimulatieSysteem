@@ -22,16 +22,16 @@ public class Location implements Serializable {
         return latitude;
     }
 
-    public Date getDate() {
+    public long getDate() {
         return date;
     }
 
     String latitude;
     String longitude;
-    Date date;
+    long date;
     
     public Location(String latitude, String longitude) {
-        this.date = new Date();
+        this.date = System.currentTimeMillis();
         this.latitude = latitude;
         this.longitude = longitude;
     }

@@ -12,6 +12,7 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.jms.*;
@@ -19,8 +20,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import model.Car;
 import model.Location;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import org.json.*;
 
 /**
  *
@@ -34,7 +34,7 @@ public class Sender {
     public boolean sendPackage(ArrayList<Location> locations, String carName) throws JMSException {
 
         ConnectionFactory connFactory = new ConnectionFactory();
-        connFactory.setProperty(ConnectionConfiguration.imqAddressList, "145.93.81.135:7676");
+        connFactory.setProperty(ConnectionConfiguration.imqAddressList, "localhost:7676");
 
         Queue myQueue = new Queue("queuevp");
 
@@ -51,9 +51,9 @@ public class Sender {
                 JSONObject jloc = new JSONObject();
                 jloc.put("lat", loc.getLatitude());
                 jloc.put("long", loc.getLongitude());
-                DateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss");
-                String date = sdf.format(loc.getDate());
-                jloc.put("date", date);
+                jloc.put("date", loc.getDate());
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTimeInMillis(loc.getDate());
                 jsArray.put(jloc);
             }
             container.put("locations", jsArray);

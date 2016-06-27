@@ -46,7 +46,7 @@ public class Car extends TimerTask {
 
     @Override
     public void run() {
-        if (locations.size() >= 20) {
+        if (locations.size() >= 10) {
             ArrayList locationsToSend = new ArrayList<>();
             //If the list is longer than 200, limit the package to 200
             if (locations.size() > 200) {

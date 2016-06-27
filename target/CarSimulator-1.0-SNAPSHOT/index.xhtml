@@ -13,12 +13,13 @@
         </style>
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBW9i_Q1leCyE0z1GFtrWhMvj1B0DAkbA"></script>
         <script type="text/javascript" src="resources/js/movement.js"></script>
-    </head>
-    <body onload="javascript:initialize();javascript:dummyStart();">
-        <script type="text/javascript">
+            <script type="text/javascript">
             function dummyStart()
             {
                 newCar('Max Breuer', '#FF0000', 'boxtel, zandvliet 71', 'tilburg, enschotsestraat 66-35');
+            #{ControllerBean.addCar('Max Breuer', '#FF0000', 'boxtel, zandvliet 71', 'tilburg, enschotsestraat 66-35')}
+                    
+                     newCar('34-fj-th', '#FF0000', 'boxtel, zandvliet 71', 'tilburg, enschotsestraat 66-35');
             #{ControllerBean.addCar('Max Breuer', '#FF0000', 'boxtel, zandvliet 71', 'tilburg, enschotsestraat 66-35')}
 
                 newCar('Sander van den Hout', '#0000cc', 'tilburg, enschotsestraat 66-35', 'boxtel, zandvliet 71');
@@ -53,13 +54,16 @@
                 jsf.ajax.request('hiddenForm:link', null, {'javax.faces.behavior.event': 'action', 'execute': '@form', 'render': 'output'});
             }
         </script>
+    </head>
+    <body onload="javascript:initialize();javascript:dummyStart();">
+    
         <h:form id="hiddenForm">
             <h:inputHidden id="hiddenCarName" value="#{ControllerBean.carName}"/>
             <h:inputHidden id="hiddenLocation" value="#{ControllerBean.location}"/>
             <h:commandLink id="link" action="#{ControllerBean.addLocation()}" />
         </h:form>
         <div id="map_canvas"></div>
-        <h:panelGroup id="output">
+<!--        <h:panelGroup id="output">
             <h:dataTable var="loc" value="#{ControllerBean.locations}">
                     <h:column>
                         <f:facet name="header">Car Name</f:facet>
@@ -74,6 +78,6 @@
                         #{loc[2]}
                     </h:column>
             </h:dataTable>
-        </h:panelGroup>
+        </h:panelGroup>-->
     </body>
 </html>
