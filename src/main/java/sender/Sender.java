@@ -34,7 +34,7 @@ public class Sender {
     public boolean sendPackage(ArrayList<Location> locations, String carName) throws JMSException {
 
         ConnectionFactory connFactory = new ConnectionFactory();
-        connFactory.setProperty(ConnectionConfiguration.imqAddressList, "localhost:7676");
+        connFactory.setProperty(ConnectionConfiguration.imqAddressList, "192.168.24.222:7676");
 
         Queue myQueue = new Queue("queuevp");
 
